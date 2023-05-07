@@ -1,12 +1,11 @@
-
-import axios from "axios";
-import { FormControl, FormGroup, InputLabel, Input, Typography, styled, Button } from "@mui/material";
+//import axios from "axios";
+import React from 'react';
 import { useState } from "react";
+import { FormControl, FormGroup, InputLabel, Input, Typography, styled, Button } from "@mui/material";
+
 import { addUser } from "../service/api";
-//import { useNavigate } from "react-router-dom";
-const Container = styled(FormGroup)`
-width: 50%;
-margin:5% auto 0 auto;`
+import { useNavigate } from "react-router-dom";
+
 
 const defaultValue = {
     name: "",
@@ -14,24 +13,34 @@ const defaultValue = {
     email: "",
     phone: ""
 }
+
+const Container = styled(FormGroup)`
+    width: 50%;
+    margin: 5% 0 0 25%;
+    & > div {
+        margin-top: 20px;
+    }
+`;
 //const useNavigate= navigate();
 const AddUser = () => {
-    const [user, setUser] = useState(defaultValue);
+const [user,setUser] =useState(defaultValue);
+      
+    let navigate = useNavigate();
 
     const onValueChange = (e) => {
-        setUser({ ...user, [e.target.name]: e.target.value })
-        //   console.log (user)
+setUser({...user, [e.target.name]:e.target.value })
+
+console.log (e.target.name)
+          console.log (user);
+
     }
 
 
-    const addUserDetails =  (e) => {
-        e.preventDefault();
-         //navigate('/all');
-         axios.post("http://localhost:3001/add", {
-    user
-    
-      });
-      window.location.reload();
+    const addUserDetails = async() => {
+       
+       await addUser(user);
+       console.log(user);
+       navigate('/all');
      
     };
     
@@ -55,7 +64,7 @@ const AddUser = () => {
                 <Input onChange={(e) => onValueChange(e)} name="phone" />
             </FormControl>
             <FormControl>
-                <Button variant="contained" onClick={() => addUserDetails()}>Add User</Button>
+                <Button variant="contained" onClick={()=> addUserDetails()}>Add User</Button>
             </FormControl>
         </Container>
     )

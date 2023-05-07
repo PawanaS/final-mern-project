@@ -1,4 +1,4 @@
-# **About the project:**
+# **Client Registration App:**
 
 It's an app for Client Registration. All the users are added in the list of all client. User can be added, deleted and edited.
 
@@ -6,10 +6,19 @@ It's an app for Client Registration. All the users are added in the list of all 
 https://app.diagrams.net/#G1qnPe2UdguLfO_uh_k1LdCJMPMgaYMWM-
 
 ![Add users]
-![All users]...
+![All users]
+![Edit users]
+![NavBar]
+![HomePage]
 
 ## ** Trello: **
 https://trello.com/b/NZubakQD/mern-project
+
+# Github:**
+https://github.com/PawanaS/final-mern-project
+
+# Heruko:**
+https://paula-customer-registration.herokuapp.com/
 
 ## ** Built With: **
 
@@ -26,6 +35,7 @@ https://trello.com/b/NZubakQD/mern-project
 ## ** Usage: **
 
 Ability to change the status of client(User) as per needed.
+
 
 
 
