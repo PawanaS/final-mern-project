@@ -3,12 +3,12 @@
 
 const express = require('express');
 const router = express.Router();
-// const usersCtrl = require('../../controllers/api/users');
-// const ensureLoggedIn = require('../../config/ensureLoggedIn');
+ const usersCtrl = require('../../controllers/api/users');
 
 
 
-//const ensureLoggedIn = require('../../config/ensureLoggedIn');
+
+const ensureLoggedIn = require('../../config/ensureLoggedIn');
 const {addUser,getUsers,getUser,editUser,deleteUser} = require ('../../controllers/api/users')
 
 

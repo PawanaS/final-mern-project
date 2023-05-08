@@ -60,6 +60,9 @@ const User=require('../../models/user-schema')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+const Users = require('../../models/user');
+const { useFetchers } = require('react-router-dom');
+
 //* /*-- Helper Functions --*/
 function createJWT(user) {
     return jwt.sign({user}, process.env.SECRET, {expiresIn: '24h'});
@@ -69,7 +72,7 @@ async function create(req, res) {
     // console.log('[From POST handler]', req.body)
     try {
         //* creating a new user
-        const user = await User.create(req.body);
+        const user = await Users.create(req.body);
         console.log(user);
 
         //* creating a new jwt
@@ -87,7 +90,7 @@ async function create(req, res) {
 async function login(req, res) {
     try {
         // find user in db
-      const user = await User.findOne({ email: req.body.email });
+      const user = await Users.findOne({ email: req.body.email });
       // check if we found an user
       if (!user) throw new Error();
       // compare the password to hashed password
