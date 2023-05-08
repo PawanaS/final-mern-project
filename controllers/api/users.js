@@ -1,67 +1,6 @@
-//* Request handler Logic
-
-const User=require('../../models/user-schema')
-
- const addUser= async(request,response)=>{
-    const user=request.body;
-
-    const newUser= new User(user);
-    
-    try {
-          await newUser.save();
-        response.status(201).json(newUser);
-    } catch(error){
-        response.status(404).json({message:error.message})
-    }
-}
-
- const getUsers= async(request,response)=> {
-    try {
-        const users= await User.find({});
-        response.status(200).json(users);
-    }catch (error){
-        response.status(404).json({message:error.message})
-    }
-    }
-    
-    const getUser=async(request,response)=>{
-        try {
-            const users= await User.findById(request.params.id);
-            response.status(200).json(users);
-        }catch (error){
-            response.status(404).json({message:error.message})
-        }
-    }
-
-
-    const editUser= async(request, response)=> {
-        const user=request.body;
-   const editedUser=new User(user);
-        try {
-            await User.updateOne({_id:request.params.id},editedUser);
-            //response.status(201).json(editedUser);
-            response.status(201).json(editedUser);
-        } catch (error) {
-            response.status(404).json({message:error.message})
-        }
-        }
-        const deleteUser=async(request,response)=>{
-
-            try {
-         
-               await User.deleteOne({_id:request.params.id});
-               response.status(200).json({message:'user deleted'})
-            } catch (error) {
-               response.status(404).json({message:error.message});
-            }
-         }
-
-
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-
-const Users = require('../../models/user');
-const { useFetchers } = require('react-router-dom');
+const User = require('../../models/user');
 
 //* /*-- Helper Functions --*/
 function createJWT(user) {
@@ -72,7 +11,7 @@ async function create(req, res) {
     // console.log('[From POST handler]', req.body)
     try {
         //* creating a new user
-        const user = await Users.create(req.body);
+        const user = await User.create(req.body);
         console.log(user);
 
         //* creating a new jwt
@@ -90,7 +29,7 @@ async function create(req, res) {
 async function login(req, res) {
     try {
         // find user in db
-      const user = await Users.findOne({ email: req.body.email });
+      const user = await User.findOne({ email: req.body.email });
       // check if we found an user
       if (!user) throw new Error();
       // compare the password to hashed password
@@ -115,9 +54,5 @@ module.exports = {
     create,
     login,
     checkToken,
-    addUser,
-    getUsers,
-    getUser,
-    editUser,
-    deleteUser
+   
     }

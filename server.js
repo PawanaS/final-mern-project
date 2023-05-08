@@ -21,7 +21,7 @@ app.use(bodyParser.json({extended:true}));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(cors())
 
-const Routes=require('./routes/api/users')
+const Routes=require('./route/route')
 app.use('/',Routes);
 
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')))
